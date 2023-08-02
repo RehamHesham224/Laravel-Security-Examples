@@ -20,14 +20,24 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $books = Book::query()
-            ->select('image','description','title','slug','user_id')
-            ->with('user:id,name')
-            ->search($search)
-            ->oldest()
-            ->get();
+//        $books = Book::query()
+//            ->select('image','description','title','slug','user_id')
+//            ->with('user:id,name')
+//            ->search($search)
+//            ->oldest()
+//            ->get();
+//
+//        return view('book.index', compact('books'));
 
-        return view('book.index', compact('books'));
+        //******don't use deserialization**********
+//        $books=base64_encode(serialize(Book::all()));
+//        $booksSerilize=unserialize(base64_decode($books));
+//        return $booksSerilize;
+//        //******Instead use json decode**********
+        $books=base64_encode(json_encode(Book::all()));
+        $bookJson=json_decode(base64_decode($books));
+        return $bookJson;
+
     }
 
     /**

@@ -21,7 +21,7 @@ class Book extends Model
     {
         static::creating(function(Book $book){
             $book->slug=Str::slug($book->title);
-//******************** Bad Practise********************************
+//********************  Bad Practise********************************
 //            $book->key=md5($book->slug);
 //            $book->key=md5(time());
 //            $book->key=uniqid("slug",true);

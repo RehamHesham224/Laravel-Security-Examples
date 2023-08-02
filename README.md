@@ -93,13 +93,16 @@ which attackers use scripts to try random (email, password) many times
 ![img_20.png](images/img_20.png)
 
 ### The Only Cryptography Secure Random Function
-- don't use 
+* don't use 
   - md5 of slug value because you can reverse it easily 
     - time() because you can know it from created_at prperty 
     - uniqid() because it's not secure
-- but use rand() or random_int() instead (Str::random(40) in laravel)
+* but use rand() or random_int() instead (Str::random(40) in laravel)
 ![img_25.png](images/img_25.png)
 
 ### Deserialization Attack and solution
 
-don't use serilize
+* don't use serialize because user can modify and access values and have a metadata
+* cookie is serialized, but it encrypted
+* Instead, use json.
+![img_26.png](images/img_26.png)
