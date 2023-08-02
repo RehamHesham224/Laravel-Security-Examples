@@ -21,9 +21,9 @@ class BookController extends Controller
     {
         $search = $request->get('search');
         $books = Book::query()
-            ->when($search, function ($query, $searchTerm) {
-                return $query->whereRaw('slug LIKE ?', ['%' . $searchTerm . '%']);
-            })
+            ->select('image','description','title','slug','user_id')
+            ->with('user:id,name')
+            ->search($search)
             ->oldest()
             ->get();
 
@@ -65,6 +65,8 @@ class BookController extends Controller
 
         //this is a correct way to get exact properties in validation method
         $book = Book::create($data);
+
+        return redirect()->route('books.show', ['book' => $book->slug]);
     }
 
     /**
@@ -72,6 +74,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        $this->authorize('view',$book);
+//        dd($book );
         return view('book.show',compact('book'));
     }
 
@@ -80,9 +84,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-//        $this->authorize('edit');
+        $this->authorize('update',$book);
 
-        return view('book.edit',['book' => $book]);
+        return view('book.edit',compact('book'));
     }
 
     /**
@@ -95,7 +99,7 @@ class BookController extends Controller
             'title'=>'required',
             'description'=>'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Assuming the maximum image size is 2MB (2048 KB)
-            'current_image' => 'required', // Required to keep the existing image filename
+            'current_image' => 'nullable', // Required to keep the existing image filename
         ]);
         $data['user_id'] = auth()->id();
         // Handle image upload if a new file is provided

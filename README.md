@@ -34,12 +34,6 @@ Don't depend on request all properties , it may pass an additional field which n
 but, depend on validation method 
 ![img_8.png](img_8.png)
 
-you can use general Rule in AuthServiceProvider boot method
-![img_13.png](img_13.png)
-![img_9.png](img_9.png)
-this rule give you same conditions as above but one message
-![img_10.png](img_10.png)
-![img_11.png](img_11.png)
 
 
 ### SQL Injection (sqli)
@@ -52,36 +46,37 @@ or use where not whereRaw
 ![img_15.png](img_15.png)
 
 
-### Escaping (cross site scripting)
+### Escaping (Avoid cross site scripting)
  
 - this vulnerability make attackers bass a payload in url and inject JS Code and modify pages
 - to prevent it 
     - not to use {!! !!} field because it put the field value as user pass 
     - Instead of it use {{}} 
     - or when you want to but html code use new HtmlString(e($value)); for make html object and escape characters
-  
+![img_21.png](img_21.png) 
 
-### Markdown Security Concern (cross site scripting)
+### Markdown Security Concern (Avoid cross site scripting)
 
 - this vulnerability make attackers bass a payload in url and inject JS Code and modify pages
 - Attackers may pass js code for example on image methods in markdown 
 
 ![img_16.png](img_16.png)
+![img_22.png](img_22.png)
 
 - To prevent it
     - use escape parameter to convert html in markdown
     - or strip ro remove entire html
 ![img_18.png](img_18.png)
-  
 
       
 ### Sensitive data
 
 in API and SPA
-use hidden property in Model class, to be not to send in api data
-and use select method in query
-or use resource class
-
+- use hidden property in Model class, to be not to send in api data
+- and use select method in query
+- or use resource class 
+![img_23.png](img_23.png)
+![img_24.png](img_24.png)
 
 ### Rate Limitation
 
@@ -103,7 +98,7 @@ which attackers use scripts to try random (email, password) many times
     - time() because you can know it from created_at prperty 
     - uniqid() because it's not secure
 - but use rand() or random_int() instead (Str::random(40) in laravel)
-
+![img_25.png](img_25.png)
 
 ### Deserialization Attack and solution
 

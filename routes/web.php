@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return "books";
 });
-Route::resource('books',BookController::class)->middleware('auth');
+Route::resource('books',BookController::class)->parameters(['posts' => 'slug'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

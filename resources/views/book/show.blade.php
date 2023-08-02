@@ -7,7 +7,7 @@
         <div class="mb-4">
             {{ $book->description }}
         </div>
-        <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">Edit</a>
+        <a href="{{ route('books.edit', $book->slug) }}" class="btn btn-primary bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">Edit</a>
     </div>
 
 </x-layout>

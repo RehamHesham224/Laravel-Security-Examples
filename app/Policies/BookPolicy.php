@@ -13,9 +13,7 @@ class BookPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
-//        return auth()->user()==$user;
-        return true;
+
     }
 
     /**
@@ -23,7 +21,7 @@ class BookPolicy
      */
     public function view(User $user, Book $book): bool
     {
-        return true;
+        return $book->published_at !== null;
     }
 
     /**

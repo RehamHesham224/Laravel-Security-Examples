@@ -1,7 +1,7 @@
 <x-layout>
     <div class="container mx-auto mt-8 p-8 max-w-md bg-white rounded-lg shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Edit Book</h2>
-        <form action="{{ route('books.update', $book->id) }}" method="POST">
+        <form action="{{ route('books.update', $book->slug) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-4">
