@@ -80,12 +80,19 @@ in API and SPA
 
 ### Rate Limitation
 
-- It's limit requests in the same time to prevent from DOS attack,
-which attackers use scripts to try random (email, password) many times
+- It's limit requests in a minute to prevent from DOS attack,
+to avoid attackers use scripts to try random (email, password) many times
 - To prevent it
-  -  limit login attempts to number for example 5 for the same ip make this script take a long time
-  -  We can use throttle:api middleware
-  
+  -  limit login attempts to in minute 
+    - for the same ip make this script take a long time
+    - for multi ip addresses bt throttle:api middleware
+
+**Example in Breeze Package**
+we can remove ip address to prevent attack from multiple ip address
+![img_27.png](images/img_27.png)
+use user id is better because one user can open multi services at same time
+![img_28.png](images/img_28.png)
+
 
 ### Type Juggling
 
@@ -104,5 +111,5 @@ which attackers use scripts to try random (email, password) many times
 
 * don't use serialize because user can modify and access values and have a metadata
 * cookie is serialized, but it encrypted
-* Instead, use json.
+* Instead, use json.  
 ![img_26.png](images/img_26.png)
