@@ -112,4 +112,5 @@ use user id is better because one user can open multi services at same time
 * don't use serialize because user can modify and access values and have a metadata
 * cookie is serialized, but it encrypted
 * Instead, use json.  
+
 ![img_26.png](images/img_26.png)
